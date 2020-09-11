@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+  <link name="main_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.3"/>
+
+      </geometry>
+    </visual>
+  </link>
+
+    <link name="head">
+     <visual>
+         <geometry>
+            <sphere radius="0.0"/>
+         </geometry>
+         <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+     </visual>
+    </link>
+
+    <joint name="main_to_head" type="revolute">
+        <parent link="main_link"/>
+        <child link="head"/>
+        <axis xyz="1 0.0 0.0"/>
+        <limit lower="30" upper="30" effort="30" velocity="1"/>
+     </joint>
+
+
+</robot>

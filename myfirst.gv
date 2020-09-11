@@ -1,0 +1,35 @@
+digraph G {
+node [shape=box];
+"head_link" [label="head_link"];
+"base_link" [label="base_link"];
+"left_eye" [label="left_eye"];
+"right_eye" [label="right_eye"];
+"left_hand" [label="left_hand"];
+"left_joint" [label="left_joint"];
+"left_leg" [label="left_leg"];
+"nose" [label="nose"];
+"right_hand" [label="right_hand"];
+"right_joint" [label="right_joint"];
+"right_leg" [label="right_leg"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"head_link" -> "base_to_head" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"base_to_head" -> "base_link"
+"head_link" -> "head_to_eye_l" [label="xyz: 0.3 -0.2 0.5 \nrpy: 0 -0 0"]
+"head_to_eye_l" -> "left_eye"
+"head_link" -> "head_to_eye_r" [label="xyz: 0.3 0.2 0.5 \nrpy: 0 -0 0"]
+"head_to_eye_r" -> "right_eye"
+"head_link" -> "head_to_left_hand" [label="xyz: 0 -0.3 0.3 \nrpy: 0.6 -0 0"]
+"head_to_left_hand" -> "left_hand"
+"left_hand" -> "l_joint_to_head" [label="xyz: 0 0 0.6 \nrpy: 0 -0 0"]
+"l_joint_to_head" -> "left_joint"
+"left_joint" -> "l_joint_to_left_leg" [label="xyz: 0 0 0.1 \nrpy: 0 -0 0"]
+"l_joint_to_left_leg" -> "left_leg"
+"head_link" -> "head_to_nose" [label="xyz: 0.3 0 0.35 \nrpy: 0 -0 0"]
+"head_to_nose" -> "nose"
+"head_link" -> "head_to_right_hand" [label="xyz: 0 0.3 0.3 \nrpy: -0.5 0 0"]
+"head_to_right_hand" -> "right_hand"
+"right_hand" -> "r_joint_to_head" [label="xyz: 0 0 0.6 \nrpy: 0 -0 0"]
+"r_joint_to_head" -> "right_joint"
+"right_joint" -> "r_joint_to_right_leg" [label="xyz: 0 0 0.1 \nrpy: 0 -0 0"]
+"r_joint_to_right_leg" -> "right_leg"
+}

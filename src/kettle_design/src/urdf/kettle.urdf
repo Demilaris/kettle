@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+
+
+  <!-- materals -->
+
+
+  <material name="nude">
+    <color rgba="0.92 0.86 0.86 1"/>
+  </material>
+    <material name="green">
+    <color rgba="0.19 0.47 0.15 1"/>
+  </material>
+    <material name="gray">
+    <color rgba="0.84 0.84 0.84 1"/>
+  </material>
+    <material name="dark_gray">
+    <color rgba="0.54 0.40 0.48 1"/>
+  </material>
+  <!--   head and base> -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.15"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <material name="nude"/>
+    </visual>
+  </link>
+
+
+  <link name="head_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.4"/>
+      </geometry>
+      <origin rpy="0 2 0" xyz="0 0 0.4"/>
+      <material name="nude"/>
+    </visual>
+  </link>
+
+
+  <!-- joints head to base -->
+
+  <joint name="base_to_head" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit lower="0.3" upper="-0.3" effort="0" velocity="0"/>
+    <parent link="head_link"/>
+    <child link="base_link"/>
+  </joint>
+
+
+  <!-- links to head -->
+
+  <link name="right_hand">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.3"/>
+          <material name="dark_gray"/>
+    </visual>
+  </link>
+
+
+  <joint name="head_to_right_hand" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="-0.5" upper="0" velocity="0.5"/>
+    <parent link="head_link"/>
+    <child link="right_hand"/>
+    <origin rpy ="-0.5 0 0" xyz="0 0.3 0.3"/>
+  </joint>
+
+  <link name="left_hand">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.3"/>
+           <material name="dark_gray"/>
+    </visual>
+  </link>
+
+  <joint name="head_to_left_hand" type="revolute">
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="0" upper="0.5" velocity="0.5"/>
+    <parent link="head_link"/>
+    <child link="left_hand"/>
+    <origin rpy ="0.6 0 0" xyz="0 -0.3 0.3"/>
+  </joint>
+
+  <!-- face -->
+
+  <link name="left_eye">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 0.1 0.1" />
+      </geometry>
+          <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="head_to_eye_l" type="fixed">
+    <axis rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="head_link" />
+    <child link="left_eye" />
+    <origin xyz="0.3 -0.2 0.5"/>
+  </joint>
+
+  <link name="right_eye">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 0.1 0.1" />
+      </geometry>
+           <material name="green"/>
+    </visual>
+  </link>
+
+  <joint name="head_to_eye_r" type="fixed">
+    <axis rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="head_link" />
+    <child link="right_eye" />
+    <origin xyz="0.3 0.2 0.5"/>
+  </joint>
+
+  <link name="nose">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 0.1 0.1" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <joint name="head_to_nose" type="fixed">
+    <axis rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="head_link" />
+    <child link="nose" />
+    <origin xyz="0.3 0 0.35"/>
+  </joint>
+
+
+
+  <link name="right_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+           <material name="dark_gray"/>
+    </visual>
+  </link>
+
+
+  <joint name="r_joint_to_head" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <parent link="right_hand" />
+    <child link="right_joint" />
+    <origin xyz="0 0 0.6"/>
+  </joint>
+
+
+
+
+<link name="left_joint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.1"/>
+      </geometry>
+           <material name="dark_gray"/>
+    </visual>
+  </link>
+
+
+  <joint name="l_joint_to_head" type="continuous">
+    <axis rpy="0 0 0" xyz="1 0 0"/>
+    <parent link="left_hand" />
+    <child link="left_joint" />
+    <origin xyz="0 0 0.6"/>
+  </joint>
+
+
+<link name="left_leg">
+    <visual>
+      <geometry>
+        <cylinder length="0.8" radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.3"/> 
+        <material name="dark_gray"/>
+    </visual>
+      
+  </link>
+
+  <link name="right_leg">
+    <visual>
+      <geometry>
+        <cylinder length="0.8" radius="0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.3"/>
+           <material name="dark_gray"/>
+    </visual>
+  </link>
+
+  <joint name="l_joint_to_left_leg" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="1" upper="0" velocity="0.5"/>
+    <parent link="left_joint"/>
+    <child link="left_leg"/>
+    <origin rpy ="0 0 0" xyz="0 0 0.1"/>
+  </joint>
+
+
+ <joint name="r_joint_to_right_leg" type="revolute">
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="0" upper="1" velocity="0.5"/>
+    <parent link="right_joint"/>
+    <child link="right_leg"/>
+    <origin rpy ="0 0 0" xyz="0 0 0.1"/>
+  </joint>
+
+</robot> 
